@@ -1,0 +1,28 @@
+# tag::app-deployment[]
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "petclinicapp.fullname" . }}
+  labels:
+    {{- include "petclinicapp.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "petclinicapp.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+         {{- include "petclinicapp.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name:  {{ .Values.name }}
+          image:  "{{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | default "Always" }}
+          env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: {{ .Values.env.spring_profiles_active | default "postgres" }}
+          ports:
+          - name: http
+            containerPort: 8080
+# end::app-deployment[]

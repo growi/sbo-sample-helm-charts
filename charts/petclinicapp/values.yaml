@@ -1,0 +1,11 @@
+replicaCount: 1
+
+name: petclinicapp
+
+image:
+  repository: quay.io/service-binding
+  name: spring-petclinic
+  pullPolicy: Always
+  tag: latest
+env:
+  spring_profiles_active: ""

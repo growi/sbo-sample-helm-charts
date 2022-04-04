@@ -1,0 +1,6 @@
+
+postgresql:
+  fullnameOverride: postgresql
+
+petclinicapp:
+  fullnameOverride: petclinicapp

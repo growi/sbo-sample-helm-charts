@@ -1,0 +1,9 @@
+apiVersion: v2
+name: petclinicapp
+description: A Helm chart for the petclinic sample app
+
+type: application
+
+version: 0.1.0
+
+appVersion: "1.0.0"

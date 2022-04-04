@@ -1,0 +1,27 @@
+name: keycloak
+
+image:
+  repository: quay.io/keycloak
+  name: keycloak
+  tag: 16.1.1
+  pullPolicy: IfNotPresent
+
+hostname: ""
+
+admin:
+  username: "admin"
+  password: "pa55w0rd"
+
+realm:
+  configMap:
+    name: realmconfig
+
+clients:
+- uuid: "d64f788e-3694-4c3a-b5a1-bfb44abd56d6"
+  name: "petclinic"
+  id: "petclinic"
+  secret: "k9BwFfhu8v3KrW9tpyai6FWfm9KYKeMI"
+- uuid: "d64f788e-3694-4c3a-b5a1-bfb44abd56d7"
+  name: "petclinic2"
+  id: "petclinic2"
+  secret: "k9BwFfhu8v3KrW9tpyai6FWfm9KYKeMI"

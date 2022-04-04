@@ -1,0 +1,24 @@
+
+postgresql:
+  fullnameOverride: postgresql
+
+keycloak:
+  fullnameOverride: keycloak
+  hostname: "keycloak.local"
+  clients:
+  - uuid: "d64f788e-3694-4c3a-b5a1-bfb44abd56d6"
+    name: "petclinic"
+    id: "petclinic"
+    secret: "k9BwFfhu8v3KrW9tpyai6FWfm9KYKeMI"
+
+realm:
+  configMap:
+    name: realmconfig
+
+petclinicapp:
+  fullnameOverride: petclinicapp
+  image:
+    repository: docker.io/growi83
+    name: spring-petclinic-oauth2
+    pullPolicy: Always
+    tag: latest

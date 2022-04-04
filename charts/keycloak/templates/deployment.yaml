@@ -1,0 +1,53 @@
+# tag::keycloak-deployment[]
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "keycloak.fullname" . }}
+  labels:
+    {{- include "keycloak.labels" . | nindent 4 }}
+  annotations:
+    # tag::keycloak-annotations[]
+    service.binding/type: "oauth2"
+    service.binding/user-name-attribute: "preferred_username"
+    service.binding/provider: "{{ include "keycloak.fullname" . }}"
+    service.binding/issuer-uri: "http://{{ include "keycloak.hostname" . }}/auth/realms/Test"
+    # end::keycloak-annotations[]
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "keycloak.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "keycloak.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: keycloak
+          image: "{{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | default "IfNotPresent" }}
+          env:
+            - name: KEYCLOAK_USER
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-admin-creds
+                  key: admin-user
+            - name: KEYCLOAK_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-admin-creds
+                  key: admin-password
+            - name: KEYCLOAK_IMPORT
+              value: /realm-data/realm-export.json
+          volumeMounts:
+            - name: spring-petclinic-keycloak
+              mountPath: "/realm-data"
+              readOnly: true
+          ports:
+            - name: keycloak
+              containerPort: 8080
+      volumes:
+        - configMap:
+            name: {{ include "keycloak.realmconfig.configMap.name" . }}
+          name: spring-petclinic-keycloak
+# end::keycloak-deployment[]

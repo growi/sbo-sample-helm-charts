@@ -1,0 +1,18 @@
+apiVersion: v2
+name: petclinic-keycloak-sample
+description: A Helm chart installing a sample binding of the petclinic application to a postgresql database an a keycloak server
+
+type: application
+
+version: 0.1.0
+
+appVersion: "1.16.0"
+
+dependencies: 
+- name: petclinicapp
+  version: ~0.1.0
+- name: postgresql
+  version: ~0.1.0
+- name: keycloak
+  version: ~0.1.0
+

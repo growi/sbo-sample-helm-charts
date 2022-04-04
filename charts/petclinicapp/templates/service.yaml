@@ -1,0 +1,16 @@
+# tag::app-service[]
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "petclinicapp.fullname" . }}
+  labels:
+    {{- include "petclinicapp.labels" . | nindent 4 }}
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      protocol: TCP
+  selector:
+    {{- include "petclinicapp.selectorLabels" . | nindent 4 }}
+    #app.kubernetes.io/name: {{ include "petclinicapp.fullname" . }}
+# end::app-service[]

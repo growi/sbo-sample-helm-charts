@@ -1,0 +1,13 @@
+replicaCount: 1
+
+name: postgresql
+
+image:
+  repository: docker.io/library
+  name: postgres
+  pullPolicy: IfNotPresent
+  tag: 13
+secret:
+  database: spring-petclinic-postgresql-db
+  username: spring-petclinic-postgresql-user
+  password: spring-petclinic-postgresql-passwd
