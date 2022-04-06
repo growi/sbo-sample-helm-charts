@@ -1,0 +1,6 @@
+dependencies:
+- name: pxc-operator
+  repository: https://percona.github.io/percona-helm-charts
+  version: 1.10.0
+digest: sha256:32cbf04e30cdf6ff5f3013bcbf4b1e39468bdf42af1bc084567876a925456059
+generated: "2022-04-06T11:12:37.061927805+02:00"

@@ -1,0 +1,8 @@
+
+mysql-cluster:
+  fullnameOverride: mysql-cluster
+
+petclinicapp:
+  fullnameOverride: petclinicapp
+  env:
+    spring_profiles_active: mysql

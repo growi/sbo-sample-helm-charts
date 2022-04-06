@@ -1,0 +1,9 @@
+dependencies:
+- name: petclinicapp
+  repository: ""
+  version: ~0.1.0
+- name: mysql-cluster
+  repository: ""
+  version: ~0.1.0
+digest: sha256:567a149d515a9d3aa8a76ef9a73c0efef39480127c951f2bf27a027030373c43
+generated: "2022-04-06T11:13:54.046912633+02:00"
