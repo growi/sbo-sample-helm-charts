@@ -1,0 +1,6 @@
+
+pg-cluster:
+  fullnameOverride: pg-cluster
+
+petclinicapp:
+  fullnameOverride: petclinicapp
